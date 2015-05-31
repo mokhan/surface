@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522201542) do
+ActiveRecord::Schema.define(version: 20150531010848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,26 +19,26 @@ ActiveRecord::Schema.define(version: 20150522201542) do
 
   create_table "exercise_sessions", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "training_session_id",              null: false
-    t.uuid     "exercise_workout_id",              null: false
+    t.uuid     "program_exercise_id",              null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.text     "sets",                default: [],              array: true
     t.float    "target_weight"
   end
 
-  create_table "exercise_workouts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+  create_table "exercises", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "program_exercises", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "exercise_id", null: false
     t.uuid     "workout_id",  null: false
     t.integer  "sets",        null: false
     t.integer  "repetitions", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "exercises", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "programs", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
@@ -62,9 +62,11 @@ ActiveRecord::Schema.define(version: 20150522201542) do
   add_index "training_sessions", ["user_id"], name: "index_training_sessions_on_user_id", using: :btree
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string "username",        null: false
-    t.string "email",           null: false
-    t.string "password_digest"
+    t.string   "username",                                        null: false
+    t.string   "email",                                           null: false
+    t.string   "password_digest"
+    t.datetime "created_at",      default: '2015-05-30 18:12:50', null: false
+    t.datetime "updated_at",      default: '2015-05-30 18:12:50', null: false
   end
 
   create_table "workouts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|

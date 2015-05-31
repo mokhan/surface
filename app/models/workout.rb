@@ -1,7 +1,7 @@
 class Workout < ActiveRecord::Base
   belongs_to :program
-  has_many :exercise_workouts
-  has_many :exercises, through: :exercise_workouts
+  has_many :program_exercises
+  has_many :exercises, through: :program_exercises
 
   def slug
     name.parameterize
@@ -12,7 +12,7 @@ class Workout < ActiveRecord::Base
   end
 
   def add_exercise(exercise, sets: 5, repetitions: 5)
-    exercise_workouts.create!(
+    program_exercises.create!(
       exercise: exercise,
       sets: sets,
       repetitions: repetitions

@@ -18,10 +18,10 @@ class TrainingSession < ActiveRecord::Base
       end
 
       session.exercise_sessions.destroy_all
-      workout.exercise_workouts.each_with_index do |exercise_workout, index|
+      workout.program_exercises.each_with_index do |program_exercise, index|
         exercise_row = workout_row.exercises[index]
         sets = []
-        1.upto(exercise_workout.sets).each do |n|
+        1.upto(program_exercise.sets).each do |n|
           if exercise_row["set#{n}"].to_i > 0
             sets << exercise_row["set#{n}"]
           else
@@ -31,7 +31,7 @@ class TrainingSession < ActiveRecord::Base
 
         session.exercise_sessions.create!(
           target_weight: exercise_row["warmup"]["targetWeight"],
-          exercise_workout: exercise_workout,
+          program_exercise: program_exercise,
           sets: sets
         )
       end

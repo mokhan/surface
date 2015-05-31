@@ -1,4 +1,4 @@
 class Exercise < ActiveRecord::Base
-  has_many :exercise_workouts
-  has_many :workouts, through: :exercise_workouts
+  has_many :program_exercises
+  has_many :workouts, through: :program_exercises
 end
