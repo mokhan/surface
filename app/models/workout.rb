@@ -15,7 +15,8 @@ class Workout < ActiveRecord::Base
     program_exercises.create!(
       exercise: exercise,
       sets: sets,
-      repetitions: repetitions
+      repetitions: repetitions,
+      program: program
     )
   end
 end

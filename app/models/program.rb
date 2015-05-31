@@ -1,5 +1,6 @@
 class Program < ActiveRecord::Base
-  has_many :exercises, through: :workouts
+  has_many :program_exercises
+  has_many :exercises, through: :program_exercises
   has_many :workouts
   before_save :save_slug
 
