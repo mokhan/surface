@@ -62,11 +62,9 @@ ActiveRecord::Schema.define(version: 20150531010848) do
   add_index "training_sessions", ["user_id"], name: "index_training_sessions_on_user_id", using: :btree
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "username",                                        null: false
-    t.string   "email",                                           null: false
-    t.string   "password_digest"
-    t.datetime "created_at",      default: '2015-05-30 18:12:50', null: false
-    t.datetime "updated_at",      default: '2015-05-30 18:12:50', null: false
+    t.string "username",        null: false
+    t.string "email",           null: false
+    t.string "password_digest"
   end
 
   create_table "workouts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
