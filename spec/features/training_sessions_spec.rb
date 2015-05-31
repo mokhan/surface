@@ -4,7 +4,7 @@ feature "Training Sessions", type: :feature do
   include_context "stronglifts_program"
   subject { TrainingSessionsPage.new }
   let(:user) { create(:user, password: "password") }
-  let!(:training_session) { create(:training_session, user: user, workout: workout_a, occurred_at: DateTime.now, body_weight: 210.0) }
+  let!(:training_session) { create(:training_session, user: user, occurred_at: DateTime.now, body_weight: 210.0) }
 
   before :each do
     login_page = LoginPage.new

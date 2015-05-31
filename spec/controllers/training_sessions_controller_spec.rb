@@ -9,8 +9,8 @@ describe TrainingSessionsController do
 
   describe "#index" do
     include_context "stronglifts_program"
-    let!(:training_session_a) { create(:training_session, user: user, workout: workout_a) }
-    let!(:training_session_b) { create(:training_session, user: user, workout: workout_b) }
+    let!(:training_session_a) { create(:training_session, user: user) }
+    let!(:training_session_b) { create(:training_session, user: user) }
 
     it "loads all my training sessions" do
       get :index
